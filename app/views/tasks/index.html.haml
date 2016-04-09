@@ -1,0 +1,10 @@
+.section
+  = render template: 'tasks/new'
+
+.section
+  %ul.collection.with-header
+    %li.collection-header
+      %h4 To Do :
+    - @tasks.each do |task|
+      %li.collection-item
+        = task.name

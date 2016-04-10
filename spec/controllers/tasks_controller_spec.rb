@@ -19,6 +19,7 @@ RSpec.describe TasksController, type: :controller do
   end
 
   describe 'POST #create' do
+
     context 'successful creation' do
 
       it 'saves new task object' do
@@ -31,16 +32,39 @@ RSpec.describe TasksController, type: :controller do
         expect(response).to redirect_to tasks_path
       end
 
-      it 'shows successful notification'
+      it 'shows success notification'
 
     end
 
     context 'unsuccessful creation' do
+
+      it 'does not save with invalid data' do
+        post :create, task: Fabricate.attributes_for(:task, name: nil)
+        expect(Task.count).to eq(0)
+      end
+
+      it 'shows failure notification'
 
     end
 
 
   end
 
+  describe 'DELETE #destroy' do
+    let(:task) {Fabricate(:task)}
+
+    it 'deletes task with given id' do
+      delete :destroy, id: task.id
+      expect(Task.count).to eq(0)
+    end
+
+    it 'redirects to the tasks/index action' do
+      delete :destroy, id: task.id
+      expect(response).to redirect_to tasks_path
+    end
+
+    it 'shows deletion notification'
+
+  end
 
 end

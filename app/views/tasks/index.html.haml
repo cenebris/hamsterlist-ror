@@ -2,6 +2,10 @@
   = render 'tasks/new'
 
 .section
+  - flash.each do |name, msg|
+    = content_tag :div, msg, class: name
+
+.section
   %ul.collection.with-header
     %li.collection-header
       %h4 To Do :

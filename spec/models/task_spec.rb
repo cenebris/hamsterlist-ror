@@ -13,4 +13,9 @@ RSpec.describe Task, type: :model do
     expect(task.errors[:name].any?).to be_truthy
   end
 
+  it 'must have finished=false status' do
+  task = Fabricate.build(:task, finished: nil)
+  expect(task).not_to be_valid
+  end
+
 end

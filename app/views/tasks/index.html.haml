@@ -1,15 +1,24 @@
 .section
   = render 'tasks/new'
 
--#.section
--#  - flash.each do |name, msg|
--#    = content_tag :div, msg, class: name
+.section
+  %ul.collection.with-header
+    %li.collection-header
+      %h4 To Do (#{@unfinished_tasks_count}):
+    - @unfinished_tasks.each do |task|
+      %li.collection-item
+        = link_to '<i class="tiny material-icons">done</i>'.html_safe, change_task_to_finished_path(task), class: 'waves-effect waves-light btn blue', method: :put
+        = task.name
+        = link_to '<i class="tiny material-icons">delete</i>'.html_safe, task, class: 'waves-effect waves-light btn red right', method: :delete
+
+.divider
 
 .section
   %ul.collection.with-header
     %li.collection-header
-      %h4 To Do :
-    - @tasks.each do |task|
-      %li.collection-item
+      %h4 Done:
+    - @finished_tasks.each do |task|
+      %li.collection-item.finished_tasks
+        = link_to '<i class="tiny material-icons">replay</i>'.html_safe, change_task_to_unfinished_path(task), class: 'waves-effect waves-light btn blue', method: :put
         = task.name
-        = link_to 'Delete', task, method: :delete
+        = link_to '<i class="tiny material-icons">delete</i>'.html_safe, task, class: 'waves-effect waves-light btn red right', method: :delete

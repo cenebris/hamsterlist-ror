@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   root 'tasks#index'
   resources :tasks
 
+  match 'tasks/:id/change_task_to_finished' => 'tasks#change_task_to_finished', as: 'change_task_to_finished', via: :put
+  match 'tasks/:id/change_task_to_unfinished' => 'tasks#change_task_to_unfinished', as: 'change_task_to_unfinished', via: :put
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

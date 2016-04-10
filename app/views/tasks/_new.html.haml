@@ -1,4 +1,5 @@
-.new-task
+.input-field
   = form_for(@new_task) do |f|
-    = f.text_field :name, placeholder: 'New Task'
-    = f.submit
+    = label_tag('New Task')
+    = f.text_field :name
+    = f.submit nil, class: 'waves-effect waves-light btn'

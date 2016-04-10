@@ -1,0 +1,4 @@
+.new-task
+  = form_for(@new_task) do |f|
+    = f.text_field :name, placeholder: 'New Task'
+    = f.submit

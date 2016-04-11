@@ -11,12 +11,14 @@ class TasksController < ApplicationController
     @task = Task.new(task_params)
     @task.finished = false
     @task.save
+    flash[:notice] = "Task #{@task.name} created"
     redirect_to tasks_path
   end
 
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
+    flash[:notice] = "Task #{@task.name} deleted"
     redirect_to tasks_path
   end
 
